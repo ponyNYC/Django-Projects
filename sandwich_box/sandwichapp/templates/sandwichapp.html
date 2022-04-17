@@ -1,0 +1,26 @@
+<h1> Welcome to the Totally Sweet Sandwich App!</h1>
+<h3>Here are the ingredients to choose from:</h3>
+{% comment %} 
+To list ingredients from context variables we will open a unordered_list tag 
+and loop through the ingredients list, creating a list item for each ingredient.
+{% endcomment %}
+<ul>
+    {% for ingredient_type in ingredients %}
+    {% comment %} Create a link to a page for the ingredient type.
+    {% endcomment %}
+    <li>
+        <a href="{% url 'ingredients_list' ingredient_type %}">
+            {{ ingredient_type | title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% comment %} A button to take generate a random combination sandwich; 
+takes the user to the sandwich_generator url.
+{% endcomment %}
+<p>Click the button if you want a sandwich!</p>
+
+<form action="{% url 'sandwich_generator' %}">
+    <input type="submit" value="Create a random sandwich!" />
+</form>
